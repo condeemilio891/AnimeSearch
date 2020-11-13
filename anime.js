@@ -92,33 +92,32 @@ function displayTitleResults(searchAnime){
         $("#showResultsDiv").removeClass("is-hidden")
         }
 
-         $(".movieSel").on("click", function(){
+        //  $(".movieSel").on("click", function(){
            
-            $("#yourServices").empty()
-            animeSearch = $(this).attr("anime-search")
-            console.log($(this))
-            result = JSON.parse(localStorage.getItem(animeSearch))
-            console.log(results)
-            animeIndex = $(this).attr("anime-index")
-            $("#showInfoDiv").removeClass("is-hidden");
-            $("#titleSelect").text(results[animeIndex].Atitle);
-            // $("#titleSelect").html("<center>" + results[animeIndex].title );
-            // $("#picture").attr("src", results[animeIndex].picture);
-            $("#selectGenre").text(results[animeIndex].Ganime);
-            $('#selectActors').text(results[animeIndex].Ranime);
-            $("#selectDesc").text(results[animeIndex].Danime);
-            //$("#picture").attr(results[animeIndex].YID)
-            $("#selectRuntime").text(results[animeIndex].Sanime);
-            console.log(results[animeIndex])
-            $("#yourServices").append(result);
+        //     $("#yourServices").empty()
+        //     animeSearch = $(this).attr("anime-search")
+        //     console.log($(this))
+        //     result = JSON.parse(localStorage.getItem(animeSearch))
+        //     console.log(results)
+        //     animeIndex = $(this).attr("anime-index")
+        //     $("#showInfoDiv").removeClass("is-hidden");
+        //     $("#titleSelect").text(results[animeIndex].Atitle);
+        //     // $("#titleSelect").html("<center>" + results[animeIndex].title );
+        //     // $("#picture").attr("src", results[animeIndex].picture);
+        //     $("#selectGenre").text(results[animeIndex].Ganime);
+        //     $('#selectActors').text(results[animeIndex].Ranime);
+        //     $("#selectDesc").text(results[animeIndex].Danime);
+        //     //$("#picture").attr(results[animeIndex].YID)
+        //     $("#selectRuntime").text(results[animeIndex].Sanime);
+        //     console.log(results[animeIndex])
+        //     $("#yourServices").append(result);
                  //create an element to hold Streaming serive
         
                 // if myServicesList contans service append to #yourServices
                 // else append to #otherServices
       
-        }) 
-      
-}
+        }
+  
 
 $("#submit").on('click',function(){
   event.preventDefault()
