@@ -5,4 +5,4 @@ Gives you a small description
 have to click search twice to clear out previous search
 must type in case wiht "-" in between 
 e.g "one-punch-man" or "attack-on-titan"
-<img href="animepic.png">
+<img src="animepic.png">
