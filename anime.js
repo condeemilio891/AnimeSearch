@@ -56,9 +56,9 @@ $.ajax({
   //show results push (streaming service)????
    //loop bracket 
   }
-  localStorage.setItem('streamkey',JSON.stringify(streams))
+  localStorage.clear()
   localStorage.setItem("key", JSON.stringify(showResults))
-  //response bracket
+  
   }
     )}
   
@@ -68,8 +68,7 @@ $.ajax({
 // create a functio nto siplay the results 
 function displayTitleResults(searchAnime){
     results = JSON.parse(localStorage.getItem('key'))
-    streams=JSON.parse(localStorage.getItem('streamkey'))
-    console.log(streams)
+    
     console.log(results)
     $("#resultsList").empty()
     for (var i = 0; i < results.length; i++){
@@ -78,17 +77,19 @@ function displayTitleResults(searchAnime){
         titleBtn.attr("anime-index", i)
         titleDesc = $("<p>").addClass("oswald pl-3").text(results[i].Danime)
         titleRate =$('<p>').addClass('oswald pl-3').text(results[i].Arating)
-        titleURL=$("<p>").addClass('oswald pl-3').text(streams)
+        titleURL=$("<p>").addClass('oswald pl-3').text(results[i])
         listItem = $("<li>").addClass("mb-3")
+        urlItem=$("<li>").addClass("mb-1")
         listItem.append(titleBtn)
         listItem.append(titleDesc)
         listItem.append(titleRate)
-        listItem.append(titleURL)
-        console.log(streams)
+        urlItem.append(titleURL)
+        
       
 
         ///
         $("#resultsList").append(listItem)
+        $("#resultsList").append(urlItem)
         $("#showResultsDiv").removeClass("is-hidden")
         }
 
@@ -121,10 +122,48 @@ function displayTitleResults(searchAnime){
 
 $("#submit").on('click',function(){
   event.preventDefault()
-  var searchTerm=$("#searchBar").val()
-sAnime(searchTerm)
-displayTitleResults(searchTerm)
+  
+  $("#resultsList").empty()
+  var searchTerm=$("#searchBar").val().toLowerCase().trim().split(/\s+/).join('-')
+  
+  const promise1 = new Promise((resolve, reject) => {
+    resolve(sAnime(searchTerm));
+  })
+  promise1.then(() => {
+  displayTitleResults(searchTerm);
+    
+  });
+
+// with out promise 
+// sAnime(searchTerm)
+// displayTitleResults(searchTerm)
+
 })
+
+$("#searchBar").keyup(function(event) { 
+  event.preventDefault()
+  if (event.keyCode === 13) { 
+      $("#submit").click(); 
+  } 
+}); 
+
+$("#submit").click(function() { 
+  event.preventDefault()
+  
+  $("#resultsList").empty()
+  var searchTerm=$("#searchBar").val().toLowerCase().trim().split(/\s+/).join('-')
+  
+  const promise1 = new Promise((resolve, reject) => {
+    resolve(sAnime(searchTerm));
+  })
+  promise1.then(() => {
+  displayTitleResults(searchTerm);
+    
+  });
+});
+
+
+
 
 $("#titleSelect").html("<center>" + result[animeIndex].Atitle );
 $("#picture").attr("iframe", results[animeIndex].YID);
