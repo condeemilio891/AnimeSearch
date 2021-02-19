@@ -1,9 +1,5 @@
 /// bugs to fix
-/// has to use "-" in between spaces "cowboy-bebop"
 //"stores in stoage as undefined first then as a defined key"
-// using the (this).attr to color in with the OMDB API id challenging do to 
-// the first bug above "bleach" for example will work but cowboy bebop will not 
-// do to the space issue
 
 
 
@@ -47,37 +43,25 @@ $.ajax({
 
       
   //result bracket
-    }
+    }}
     //push result object unto showresults array
   showResults.push(result)
+ console.log(showResults)
   
-  //console.log(result)
-  //console.log(streams)
-  //show results push (streaming service)????
-   //loop bracket 
-  }
-  localStorage.clear()
-  localStorage.setItem("key", JSON.stringify(showResults))
   
-  }
-    )}
   
-  //push your show results into results
-  //
-
-// create a functio nto siplay the results 
-function displayTitleResults(searchAnime){
-    results = JSON.parse(localStorage.getItem('key'))
-    
-    console.log(results)
     $("#resultsList").empty()
-    for (var i = 0; i < results.length; i++){
-        titleBtn = $("<button>").addClass("button has-text-white paytone pborder mb-1 ml-3 movieSel").text(results[i].Atitle )
+    $("#urlResultsList").empty()
+    for (var i = 0; i < showResults.length; i++){
+      console.log(showResults)
+        titleBtn = $("<h1>")
+        .addClass("paytone purp pt-3 mb-3 pl-3 is-size-2")
+        .text(showResults[i].Atitle )
         titleBtn.attr("anime-search", searchAnime)
         titleBtn.attr("anime-index", i)
-        titleDesc = $("<p>").addClass("oswald pl-3").text(results[i].Danime)
-        titleRate =$('<p>').addClass('oswald pl-3').text(results[i].Arating)
-        titleURL=$("<p>").addClass('oswald pl-3').text(results[i])
+        titleDesc = $("<p>").addClass("oswald pl-3").text(showResults[i].Danime)
+        titleRate =$('<p>').addClass('oswald pl-3').text(showResults[i].Arating)
+        titleURL=$("<p>").addClass('oswald pl-3').text(showResults[i])
         listItem = $("<li>").addClass("mb-3")
         urlItem=$("<li>").addClass("mb-1")
         listItem.append(titleBtn)
@@ -89,11 +73,16 @@ function displayTitleResults(searchAnime){
 
         ///
         $("#resultsList").append(listItem)
-        $("#resultsList").append(urlItem)
+        $("#urlResultsList").append(urlItem)
         $("#showResultsDiv").removeClass("is-hidden")
-        }
+        }})}
 
         //  $(".movieSel").on("click", function(){
+
+          
+
+
+        //  })
            
         //     $("#yourServices").empty()
         //     animeSearch = $(this).attr("anime-search")
@@ -117,26 +106,17 @@ function displayTitleResults(searchAnime){
                 // if myServicesList contans service append to #yourServices
                 // else append to #otherServices
       
-        }
+        
   
 
 $("#submit").on('click',function(){
   event.preventDefault()
   
   $("#resultsList").empty()
+  $("#urlResultsList").empty()
   var searchTerm=$("#searchBar").val().toLowerCase().trim().split(/\s+/).join('-')
-  
-  const promise1 = new Promise((resolve, reject) => {
-    resolve(sAnime(searchTerm));
-  })
-  promise1.then(() => {
-  displayTitleResults(searchTerm);
-    
-  });
+sAnime(searchTerm)
 
-// with out promise 
-// sAnime(searchTerm)
-// displayTitleResults(searchTerm)
 
 })
 
@@ -152,14 +132,8 @@ $("#submit").click(function() {
   
   $("#resultsList").empty()
   var searchTerm=$("#searchBar").val().toLowerCase().trim().split(/\s+/).join('-')
-  
-  const promise1 = new Promise((resolve, reject) => {
-    resolve(sAnime(searchTerm));
-  })
-  promise1.then(() => {
-  displayTitleResults(searchTerm);
-    
-  });
+Sanime(searchTerm)  
+
 });
 
 
